@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aftelklok</title>
+    <style>
+        #countdown {
+            font-size: 3em;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #startButton {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown">01:00</div>
+    <button id="startButton" onclick="startCountdown()">Start</button>
+
+    <script>
+        function startCountdown() {
+            var countdownElement = document.getElementById("countdown");
+            var startButton = document.getElementById("startButton");
+            var timeLeft = 60;
+            
+            startButton.style.display = "none"; // Button verdwijnt
+            
+            var countdownInterval = setInterval(function() {
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = timeLeft % 60;
+                
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+                
+                countdownElement.textContent = minutes + ":" + seconds;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "00:00";
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
